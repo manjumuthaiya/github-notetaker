@@ -1,0 +1,24 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class NotesList extends React.Component {
+  render() {
+    var notes = this.props.notes.map(function(note, index) {
+      console.log(note);
+      return (
+        <li className="list-group-item" key={index}>{note['.value']}</li>
+      );
+    });
+    return (
+      <ul className="list-group">
+        {notes}
+      </ul>
+    );
+  }
+}
+
+NotesList.propTypes = {
+  notes: React.PropTypes.array.isRequired
+};
+
+export default NotesList;
