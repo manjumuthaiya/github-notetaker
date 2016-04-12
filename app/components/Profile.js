@@ -5,6 +5,7 @@ import UserProfile from './Github/UserProfile';
 import Notes from './Notes/Notes';
 import ReactFireMixin from 'reactfire';
 import Firebase from 'firebase';
+import helpers from '../utils/helpers';
 
 var Profile = React.createClass({
   mixins: [ReactFireMixin],
@@ -21,6 +22,12 @@ var Profile = React.createClass({
     this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
     var childRef = this.ref.child(this.props.params.username);
     this.bindAsArray(childRef, 'notes');
+    helpers.getGithubInfo(this.props.params.username).then((data) => {
+      this.setState({
+        bio: data.bio,
+        repos: data.repos
+      })
+    });
   },
   componentWillUnmount: function() {
     this.unbind('notes');
