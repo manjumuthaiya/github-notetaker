@@ -10,7 +10,7 @@ class SearchGithub extends React.Component {
   handleSubmit() {
     var username = this.usernameRef.value;
     this.usernameRef.value = '';
-    this.context.router.push("profile/" + username);
+    this.context.router.push("/profile/" + username);
   }
 
   render() {
